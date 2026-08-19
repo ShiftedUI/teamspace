@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Chat - Teamspace{% endblock %}
+{% block nav_chat %}active{% endblock %}
+
+{% block content %}
+<div class="chat-layout">
+    <!-- Channel Sidebar -->
+    <aside class="channel-sidebar">
+        <div class="sidebar-header">
+            <h3>Channels</h3>
+            <button class="btn-icon" id="btn-new-channel" title="New channel">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+        </div>
+        <div class="channel-list" id="channel-list">
+            <!-- Channels loaded dynamically -->
+        </div>
+    </aside>
+
+    <!-- Chat Area -->
+    <section class="chat-area">
+        <div class="chat-header" id="chat-header">
+            <span class="channel-name" id="active-channel-name">Select a channel</span>
+            <span class="channel-desc" id="active-channel-desc"></span>
+        </div>
+
+        <div class="messages-container" id="messages-container">
+            <div class="empty-state" id="chat-empty-state">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span>Select a channel to start chatting</span>
+            </div>
+        </div>
+
+        <div class="message-input-area" id="message-input-area">
+            <div class="message-input-wrapper">
+                <textarea class="message-input" id="message-input" placeholder="Type a message..." rows="1"></textarea>
+                <button class="btn-send" id="btn-send" disabled title="Send message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- New Channel Modal -->
+<div class="modal-overlay" id="new-channel-modal">
+    <div class="modal">
+        <h3>Create Channel</h3>
+        <input type="text" class="modal-input" id="new-channel-name" placeholder="Channel name">
+        <input type="text" class="modal-input" id="new-channel-desc" placeholder="Description (optional)">
+        <div class="modal-actions">
+            <button class="btn-secondary" id="btn-cancel-channel">Cancel</button>
+            <button class="btn-primary" id="btn-create-channel">Create</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/chat.js"></script>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Teamspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+        }
+        .login-container {
+            text-align: center;
+        }
+        .login-container h1 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .login-container p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+        .user-grid {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .user-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: border-color var(--transition), background var(--transition);
+            width: 100px;
+        }
+        .user-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-tertiary);
+        }
+        .user-card .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .user-card .name {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Teamspace</h1>
+        <p>Select your name to continue</p>
+        <div class="user-grid">
+            {% for user in users %}
+            <form method="POST" action="/login" style="display:inline">
+                <input type="hidden" name="user_id" value="{{ user.id }}">
+                <button type="submit" class="user-card">
+                    <div class="avatar" style="background:{{ user.colour }}">{{ user.name[0] }}</div>
+                    <span class="name">{{ user.name }}</span>
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

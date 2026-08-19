@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Docs - Teamspace{% endblock %}
+{% block nav_docs %}active{% endblock %}
+
+{% block content %}
+<div class="docs-layout">
+    <!-- Docs Sidebar -->
+    <aside class="docs-sidebar">
+        <div class="sidebar-header">
+            <h3>Pages</h3>
+            <button class="btn-icon" id="btn-new-doc" title="New page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </button>
+        </div>
+        <div class="docs-list" id="docs-list">
+            <!-- Pages loaded dynamically -->
+        </div>
+    </aside>
+
+    <!-- Editor Area -->
+    <section class="docs-editor-area">
+        <div class="editor-header" id="editor-header">
+            <input type="text" class="editor-title-input" id="doc-title-input" placeholder="Untitled page">
+            <span class="editor-meta" id="editor-meta"></span>
+            <button class="btn-icon" id="btn-save-doc" title="Save">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            </button>
+            <button class="btn-icon" id="btn-delete-doc" title="Delete page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            </button>
+        </div>
+
+        <div class="editor-toolbar" id="editor-toolbar">
+            <button class="toolbar-btn" data-command="bold" title="Bold"><strong>B</strong></button>
+            <button class="toolbar-btn" data-command="italic" title="Italic"><em>I</em></button>
+            <button class="toolbar-btn" data-command="underline" title="Underline"><u>U</u></button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" data-command="formatBlock" data-value="h1" title="Heading 1">H1</button>
+            <button class="toolbar-btn" data-command="formatBlock" data-value="h2" title="Heading 2">H2</button>
+            <button class="toolbar-btn" data-command="formatBlock" data-value="h3" title="Heading 3">H3</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" data-command="insertUnorderedList" title="Bullet list">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            </button>
+            <button class="toolbar-btn" data-command="insertOrderedList" title="Numbered list">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>
+            </button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" data-command="formatBlock" data-value="blockquote" title="Quote">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path></svg>
+            </button>
+        </div>
+
+        <div class="editor-content">
+            <div class="editor-body" id="editor-body" contenteditable="true" data-placeholder="Start writing..."></div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/docs.js"></script>
+{% endblock %}
